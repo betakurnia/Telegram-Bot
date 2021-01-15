@@ -1,6 +1,6 @@
 const { Telegraf } = require("telegraf");
 const feedParser = require("ortoo-feedparser");
-var cron = require("node-cron");
+const cron = require("node-cron");
 
 const url = "https://www.livechart.me/feeds/episodes";
 
