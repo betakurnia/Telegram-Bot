@@ -1,5 +1,5 @@
-const { Composer } = require("micro-bot");
-const bot = new Composer();
+const { Telegraf } = require("telegraf");
+const bot = new Telegraf("YOUR BOT TOKEN");
 const url = "https://www.livechart.me/feeds/episodes";
 let Parser = require("rss-parser");
 let parser = new Parser();
@@ -46,7 +46,13 @@ bot.start((ctx) => {
             ctx.replyWithHTML(x);
           }, i * 750);
         }
+        console.log(Date.parse(item.pubDate), item.title);
       });
+      console.log(
+        Date.parse(new Date()) - 30000,
+        new Date(),
+        Date.parse(new Date()) + 30000
+      );
     })();
   });
   cron.schedule("*/15 * * * *", () => {
@@ -80,4 +86,4 @@ bot.command("last", (ctx) => {
   })();
 });
 bot.hears("ehe", (ctx) => ctx.reply("Ehe Te Nandayo!"));
-module.exports = bot;
+bot.launch();
